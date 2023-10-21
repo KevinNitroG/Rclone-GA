@@ -1,9 +1,7 @@
 #!/bin/bash
 
-Run_Rclone_Commands()
-{
-    while IFS= read -r i
-    do
+Run_Rclone_Commands() {
+    while IFS= read -r i; do
         echo "--- RUN YOUR COMMAND ---"
         echo
         echo "$i"
@@ -16,8 +14,11 @@ Run_Rclone_Commands()
         echo
         echo "************************"
         echo
-    done< <(grep -v '^ *#' < YOUR_RCLONE_COMMANDS.txt)
+    done < <(grep -v '^ *#' <YOUR_RCLONE_COMMANDS.txt)
 }
+
+# CONVERT CRLF TO LF
+sed -i 's/\r\n/\n/g' YOUR_RCLONE_COMMANDS.txt
 
 if [ -s "YOUR_RCLONE_COMMANDS.txt" ]; then
     Run_Rclone_Commands

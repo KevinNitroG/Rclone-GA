@@ -5,22 +5,17 @@ on:
     paths:
       - "YOUR_RCLONE_COMMANDS.txt"
   workflow_dispatch:
-  watch:
-    types: [started]
 
 permissions: write-all
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_REPOSITORY: $GITHUB_REPOSITORY
   RCLONE_CONFIG_FILE: ${{ secrets.RCLONE_CONFIG_FILE }}
-  WORKSPACE: ${{ github.WORKSPACE }}
   COMMANDS: ${{ secrets.COMMANDS }}
 
 jobs:
   Run_Your_Custom_Rclone_Commands:
     runs-on: ubuntu-latest
-    #    timeout-minutes: 5
 
     steps:
       - name: Checkout code
